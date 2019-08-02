@@ -1,12 +1,8 @@
 #!/bin/bash
-
-PATH=./.gitignore
-[ ! -f $PATH ] && eval touch $PATH
-
-if eval grep -R "$1" "$PATH"
-then
-	eval echo "File already exists in gitignore."
+GREP=`grep "$1" "./.gitignore"`
+[ ! -f "./.gitignore" ] && touch "./.gitignore" && echo "File does not exist, making one."
+if [ "$GREP" ]; then
+	echo "File already exists in .gitignore"
 else
-	eval cat "$1" >> "$PATH"
+	echo "$1" >> ./.gitignore
 fi
-
