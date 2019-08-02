@@ -1,2 +1,2 @@
 # gitignore-bash
-A small command line utility to add files to your gitignore dotfile directly
+A simple shell script to add filenames to your gitignore file directly.
