@@ -1,4 +1,10 @@
 #!/bin/bash
+usage()
+{
+  echo "Usage: $0 [ -a FILE_TO_ADD ] [ -r FILE_TO_REMOVE ]"
+  exit 1;
+}
+
 add_file()
 {
   GREP=`grep "$1" "./.gitignore"`
@@ -22,10 +28,11 @@ remove_file()
 unset GREP
 [ ! -f "./.gitignore" ] && touch "./.gitignore" && echo "File does not exist, making one."
 
-while getopts 'a:r:' c
+while getopts 'a:r:h' c
 do
   case $c in
     a) add_file $OPTARG ;;
     r) remove_file $OPTARG ;;
+    *|h) usage ;;
   esac
 done
